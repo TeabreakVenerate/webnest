@@ -8,9 +8,8 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: "Pricing", href: "#calculator" },
-    { label: "Add-ons", href: "#capabilities" },
     { label: "Case Studies", href: "#showcase" },
+    { label: "Pricing & Add-ons", href: "#calculator" },
     { label: "How It Works", href: "#how-it-works" },
     { label: "FAQ", href: "#faq" },
   ];

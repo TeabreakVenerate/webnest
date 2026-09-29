@@ -7,32 +7,29 @@ import { SITE_CONFIG } from "@/lib/constants";
 const PROJECTS: StoreProject[] = [
   {
     title: "Elikar Campus Essentials",
-    category: "Campus Care Packages & Pre-orders",
-    description:
-      "A fast, high-conversion dorm delivery storefront. Features slide-over cart drawers, instant bundle selection, and direct automated Telegram and WhatsApp order routing for Covenant University students.",
-    metrics: "Loads in 0.38s with zero database lag, 40+ dorm deliveries weekly.",
+    category: "Campus Care Packages",
+    domainUrl: "https://elikar.vercel.app",
+    metrics: "Loads in 0.38s",
     tags: ["Slide-over Cart", "Fast Routing", "Vercel Edge", "₦0 Hosting"],
-    icon: "cart",
+    bannerColor: "bg-[#FFC107]/15",
     demoUrl: "https://elikar.vercel.app",
   },
   {
     title: "Light Pen Hub",
-    category: "Author Bookstore & Creative Platform",
-    description:
-      "An interactive reader community portal featuring clean digital book showcases, instant author contact buttons, dynamic reading modes, and low-latency chapter previews.",
-    metrics: "Clean mobile reader experience, 100% uptime, zero recurring hosting fees.",
+    category: "Creator Bookstore",
+    domainUrl: "https://lightpenhub.com",
+    metrics: "100% Edge Uptime",
     tags: ["Custom Catalog", "Theme Switcher", "Author CRM", "Cloudflare DNS"],
-    icon: "book",
+    bannerColor: "bg-[#0F3D70]/10",
     demoUrl: "https://lightpenhub.com",
   },
   {
-    title: "Campus Pastry & Gourmet Treats",
-    category: "Fresh Bakery & Snack Catalog",
-    description:
-      "A mobile-first pastry menu built for student bakers. Allows hostel customers to pick cake slices, meat pies, and donuts with instant WhatsApp receipts and hall delivery details.",
-    metrics: "Over 80% checkout completion rate via WhatsApp 1-tap ordering.",
+    title: "Campus Pastry Treats",
+    category: "Hostel Food Menu",
+    domainUrl: "https://pastrytreats.webnest.store",
+    metrics: "80% WhatsApp Checkout",
     tags: ["Mobile Catalog", "1-Tap Checkout", "WhatsApp Receipts", "48h Build"],
-    icon: "food",
+    bannerColor: "bg-[#FFC107]/25",
     demoUrl: `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
       "Hello Endurance! I want a pastry catalog demo."
     )}`,
@@ -45,13 +42,13 @@ export function Showcase() {
       {/* Section Header */}
       <div className="max-w-2xl">
         <span className="border-2 border-[#0F3D70] bg-[#FFC107] px-2.5 py-1 text-xs font-black uppercase tracking-wider text-[#0F3D70]">
-          Proof Inspection (Case Studies)
+          Proof Inspection (Showcase)
         </span>
         <h2 className="mt-3 text-2xl font-black uppercase tracking-tight text-[#0F3D70] sm:text-3xl lg:text-4xl">
           Real working systems. Zero template fluff.
         </h2>
         <p className="mt-2 text-sm font-semibold text-[#1A1A1A]">
-          Inspect live storefronts engineered by Endurance Owie. Every client gets high-speed static edge hosting, custom WhatsApp order routing, and modern mobile UX.
+          Minimalist URL bar frames displaying live storefronts engineered by Endurance Owie. Every client gets high-speed static edge hosting, custom WhatsApp order routing, and modern mobile UX.
         </p>
       </div>
 

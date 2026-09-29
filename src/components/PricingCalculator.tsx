@@ -220,7 +220,7 @@ export function PricingCalculator() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between border-b-2 border-[#0F3D70] pb-8">
           <div>
             <span className="border-2 border-[#0F3D70] bg-[#FFC107] px-2.5 py-1 text-xs font-black uppercase tracking-wider text-[#0F3D70]">
-              Dynamic Pricing Engine
+              Unified Pricing & Add-ons Grid
             </span>
             <h2 className="mt-3 text-2xl font-black uppercase tracking-tight text-[#0F3D70] md:text-4xl">
               Configure Your Storefront Package
