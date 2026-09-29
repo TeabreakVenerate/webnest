@@ -8,35 +8,35 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: "Pricing Calculator", href: "#calculator" },
-    { label: "Add-on Features", href: "#capabilities" },
-    { label: "Proof of Work", href: "#showcase" },
+    { label: "Pricing", href: "#calculator" },
+    { label: "Add-ons", href: "#capabilities" },
+    { label: "Case Studies", href: "#showcase" },
     { label: "How It Works", href: "#how-it-works" },
     { label: "FAQ", href: "#faq" },
   ];
 
   const whatsappHref = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
-    "Hello WebNest! I want to launch my storefront for ₦10,000."
+    "Hello Webnest! I want to launch my storefront for ₦10,000."
   )}`;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-800/80 bg-neutral-950/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b-2 border-[#0F3D70] bg-white">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
         <a
           href="#"
-          className="group flex items-center gap-2.5 transition-transform duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg p-1"
+          className="group flex items-center gap-2.5 transition-all duration-150 ease-out active:scale-[0.97]"
           style={{ touchAction: "manipulation" }}
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 text-neutral-950 shadow-md shadow-emerald-500/20">
+          <div className="flex h-10 w-10 items-center justify-center border-2 border-[#0F3D70] bg-[#FFC107] text-[#0F3D70] shadow-brutal-sm">
             <ShoppingBag className="h-5 w-5 stroke-[2.5]" />
           </div>
           <div className="flex flex-col">
-            <span className="text-base font-bold tracking-tight text-white group-hover:text-emerald-400 transition-colors duration-150">
-              WebNest
+            <span className="text-xl font-black uppercase tracking-tight text-[#0F3D70]">
+              Webnest
             </span>
-            <span className="text-[10px] font-medium text-neutral-400">
-              Storefront Studio
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#0F3D70]/80">
+              Covenant Storefront Engine
             </span>
           </div>
         </a>
@@ -47,7 +47,7 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-xs font-medium text-neutral-300 transition-colors duration-150 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-md px-2 py-1"
+              className="text-xs font-black uppercase tracking-wide text-[#0F3D70] transition-colors duration-150 hover:bg-[#FFC107] px-2 py-1 border border-transparent hover:border-[#0F3D70]"
             >
               {link.label}
             </a>
@@ -60,10 +60,10 @@ export function Navbar() {
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2 text-xs font-semibold text-neutral-950 shadow-sm transition-[transform,background-color,box-shadow] duration-150 hover:bg-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            className="hidden sm:inline-flex min-h-[44px] items-center gap-2 border-2 border-[#0F3D70] bg-[#FFC107] px-4 py-2 text-xs font-black uppercase tracking-wider text-[#0F3D70] shadow-brutal-base transition-all duration-150 ease-out hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal-hover active:translate-x-0 active:translate-y-0 active:shadow-brutal-base"
             style={{ touchAction: "manipulation" }}
           >
-            <MessageCircle className="h-4 w-4 fill-current" />
+            <MessageCircle className="h-4 w-4 fill-current stroke-[2.5]" />
             <span>Launch on WhatsApp</span>
           </a>
 
@@ -71,25 +71,25 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex md:hidden min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900/80 text-neutral-300 transition-colors duration-150 hover:bg-neutral-800 hover:text-white active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            className="flex md:hidden min-h-[44px] min-w-[44px] items-center justify-center border-2 border-[#0F3D70] bg-white text-[#0F3D70] shadow-brutal-sm transition-all duration-150 hover:bg-[#FFC107]"
             aria-label="Toggle Navigation Menu"
             style={{ touchAction: "manipulation" }}
           >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileMenuOpen ? <X className="h-6 w-6 stroke-[3]" /> : <Menu className="h-6 w-6 stroke-[3]" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-neutral-800/80 bg-neutral-950/95 px-4 py-5 backdrop-blur-xl">
-          <div className="flex flex-col space-y-3">
+        <div className="md:hidden border-t-2 border-[#0F3D70] bg-white p-4 shadow-brutal-base">
+          <div className="flex flex-col space-y-2">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex min-h-[44px] items-center rounded-lg px-3 text-sm font-medium text-neutral-300 transition-colors duration-150 hover:bg-neutral-900 hover:text-white active:scale-[0.98]"
+                className="flex min-h-[44px] items-center border-2 border-[#0F3D70] bg-white px-3 text-xs font-black uppercase tracking-wider text-[#0F3D70] transition-all duration-150 hover:bg-[#FFC107]"
                 style={{ touchAction: "manipulation" }}
               >
                 {link.label}
@@ -101,10 +101,10 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition-[transform,background-color] duration-150 hover:bg-emerald-400 active:scale-[0.97]"
+                className="flex min-h-[48px] w-full items-center justify-center gap-2 border-2 border-[#0F3D70] bg-[#FFC107] px-4 py-3 text-xs font-black uppercase tracking-wider text-[#0F3D70] shadow-brutal-base transition-all duration-150 ease-out hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal-hover"
                 style={{ touchAction: "manipulation" }}
               >
-                <MessageCircle className="h-4 w-4 fill-current" />
+                <MessageCircle className="h-4 w-4 fill-current stroke-[2.5]" />
                 <span>Launch on WhatsApp (₦10,000)</span>
               </a>
             </div>

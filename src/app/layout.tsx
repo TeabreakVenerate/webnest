@@ -8,17 +8,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "WebNest | High-Converting WhatsApp Storefronts in 48 Hours",
+  title: "Webnest | 1-Click WhatsApp Storefronts in 48 Hours",
   description:
-    "Stop losing orders in messy DMs. Turn your WhatsApp status into a 1-click store in 48 hours for ₦10,000. Built for student vendors, boutique owners, and creator brands.",
-  keywords: [
-    "WhatsApp storefront",
-    "Nigeria e-commerce",
-    "student vendor store",
-    "WebNest",
-    "instant checkout",
-    "Covenant University vendors",
-  ],
+    "Functional, fast e-commerce setups for campus entrepreneurs and local retail boutiques within 48 hours. Flat ₦10,000 base fee with zero monthly SaaS fees.",
 };
 
 export const viewport: Viewport = {
@@ -33,8 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className={`${inter.className} min-h-screen bg-neutral-950 text-neutral-100 antialiased selection:bg-emerald-500/20 selection:text-emerald-300`}>
+    <html lang="en" className="scroll-smooth">
+      <body
+        className={`${inter.className} min-h-screen bg-white text-[#1A1A1A] antialiased selection:bg-[#FFC107] selection:text-[#0F3D70]`}
+      >
         {children}
       </body>
     </html>

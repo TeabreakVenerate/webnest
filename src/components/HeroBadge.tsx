@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Sparkles } from "lucide-react";
+import { Zap } from "lucide-react";
 
 interface HeroBadgeProps {
   text?: string;
@@ -10,26 +10,22 @@ interface HeroBadgeProps {
 }
 
 export function HeroBadge({
-  text = "Launch in 48 Hours",
+  text = "48-Hour Delivery Guarantee",
   subtext = "Base Storefront ₦10,000",
   href = "#calculator",
 }: HeroBadgeProps) {
   return (
     <a
       href={href}
-      className="group relative inline-flex items-center gap-2.5 rounded-full border border-emerald-500/30 bg-emerald-950/40 px-4 py-2 text-xs font-medium text-emerald-300 backdrop-blur-md transition-[border-color,background-color,box-shadow,transform] duration-150 hover:border-emerald-400/60 hover:bg-emerald-900/50 hover:shadow-[0_0_20px_rgba(16,185,129,0.25)] active:scale-[0.97]"
+      className="group inline-flex items-center gap-2.5 border-2 border-[#0F3D70] bg-white px-3.5 py-1.5 text-xs font-black uppercase tracking-wider text-[#0F3D70] shadow-brutal-sm transition-all duration-150 ease-out hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-brutal-base hover:bg-[#FFC107]"
       style={{ touchAction: "manipulation" }}
     >
-      {/* Pulsing Live Beacon */}
-      <span className="relative flex h-2 w-2" aria-hidden="true">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-        <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-      </span>
-
-      <span className="font-semibold text-white">{text}</span>
-      <span className="h-3 w-px bg-emerald-500/30" aria-hidden="true" />
-      <span className="text-emerald-400">{subtext}</span>
-      <Sparkles className="h-3.5 w-3.5 text-emerald-400 opacity-80 transition-transform duration-150 group-hover:scale-110" />
+      {/* Structural Indicator Block */}
+      <span className="flex h-2.5 w-2.5 border border-[#0F3D70] bg-[#FFC107]" aria-hidden="true" />
+      <span>{text}</span>
+      <span className="h-3 w-[2px] bg-[#0F3D70]" aria-hidden="true" />
+      <span className="bg-[#0F3D70] px-1.5 py-0.5 text-white">{subtext}</span>
+      <Zap className="h-3.5 w-3.5 fill-[#FFC107] text-[#0F3D70] stroke-[2.5]" />
     </a>
   );
 }

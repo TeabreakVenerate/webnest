@@ -4,29 +4,30 @@
 
 @layer base {
   :root {
-    --background: #09090b;
-    --foreground: #f4f4f5;
+    --background: #FFFFFF;
+    --foreground: #0F3D70;
   }
 
   * {
-    border-color: #27272a;
+    border-color: #0F3D70;
   }
 
   html {
-    color-scheme: dark;
     scroll-behavior: smooth;
+    background-color: #FFFFFF;
+    color: #0F3D70;
   }
 
   body {
-    background-color: #09090b;
-    color: #f4f4f5;
+    background-color: #FFFFFF;
+    color: #1A1A1A;
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
 
-  /* Kill 300ms tap delay on iOS/Android */
+  /* Kill 300ms tap delay on mobile controls */
   button,
   a,
   input,

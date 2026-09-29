@@ -10,18 +10,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "clinical-white": "#FFFFFF",
+        "covenant-blue": "#0F3D70",
+        "high-vis-yellow": "#FFC107",
+        covenant: "#0F3D70",
       },
-      animation: {
-        "shimmer": "shimmer 2.5s linear infinite",
-        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-      },
-      keyframes: {
-        shimmer: {
-          from: { backgroundPosition: "0 0" },
-          to: { backgroundPosition: "-200% 0" },
-        },
+      boxShadow: {
+        "brutal-base": "4px 4px 0 0 #0F3D70",
+        "brutal-hover": "6px 6px 0 0 #0F3D70",
+        "brutal-sm": "2px 2px 0 0 #0F3D70",
+        "brutal-lg": "8px 8px 0 0 #0F3D70",
       },
     },
   },
