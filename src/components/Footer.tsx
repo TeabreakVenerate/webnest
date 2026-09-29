@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { ShoppingBag, Copy, Check, MessageCircle, Heart } from "lucide-react";
+import { ShoppingBag, Copy, Check, MessageCircle, Mail } from "lucide-react";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export function Footer() {
   const [copied, setCopied] = useState(false);
@@ -13,6 +14,10 @@ export function Footer() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
+
+  const whatsappHref = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
+    "Hello Endurance! I want to order a WebNest storefront."
+  )}`;
 
   return (
     <footer className="border-t border-neutral-800/80 bg-neutral-950 pt-16 pb-12">
@@ -84,12 +89,20 @@ export function Footer() {
               FAQ
             </a>
             <a
-              href="https://wa.me/2349000000000?text=Hello%20Endurance!%20I%20want%20to%20order%20a%20WebNest%20storefront."
+              href={`mailto:${SITE_CONFIG.email}`}
+              className="flex items-center gap-1.5 text-neutral-300 hover:text-white transition-colors duration-150"
+            >
+              <Mail className="h-3.5 w-3.5 text-emerald-400" />
+              <span>{SITE_CONFIG.email}</span>
+            </a>
+            <a
+              href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-emerald-400 hover:text-emerald-300 font-semibold transition-colors duration-150"
+              className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 font-semibold transition-colors duration-150"
             >
-              Direct WhatsApp
+              <MessageCircle className="h-3.5 w-3.5 fill-current" />
+              <span>WhatsApp ({SITE_CONFIG.whatsappDisplay})</span>
             </a>
           </div>
         </div>
@@ -98,7 +111,7 @@ export function Footer() {
         <div className="mt-8 text-center text-xs text-neutral-400 border-t border-neutral-800/80 pt-6">
           <p>
             Architected and engineered by{" "}
-            <span className="font-semibold text-neutral-200">Endurance Owie</span> (Covenant University).
+            <span className="font-semibold text-neutral-200">{SITE_CONFIG.architect}</span> (Covenant University).
           </p>
           <p className="mt-1 text-neutral-400">
             Powered by{" "}

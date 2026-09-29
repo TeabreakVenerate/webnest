@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { ShoppingBag, MessageCircle, Menu, X, Zap } from "lucide-react";
+import { ShoppingBag, MessageCircle, Menu, X } from "lucide-react";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -13,6 +14,10 @@ export function Navbar() {
     { label: "How It Works", href: "#how-it-works" },
     { label: "FAQ", href: "#faq" },
   ];
+
+  const whatsappHref = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
+    "Hello WebNest! I want to launch my storefront for ₦10,000."
+  )}`;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-neutral-800/80 bg-neutral-950/80 backdrop-blur-md">
@@ -52,7 +57,7 @@ export function Navbar() {
         {/* Action Button & Mobile Toggle */}
         <div className="flex items-center gap-3">
           <a
-            href="https://wa.me/2349000000000?text=Hello%20WebNest!%20I%20want%20to%20launch%20my%20storefront%20for%20%E2%82%A610%2C000."
+            href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2 text-xs font-semibold text-neutral-950 shadow-sm transition-[transform,background-color,box-shadow] duration-150 hover:bg-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
@@ -92,7 +97,7 @@ export function Navbar() {
             ))}
             <div className="pt-2">
               <a
-                href="https://wa.me/2349000000000?text=Hello%20WebNest!%20I%20want%20to%20launch%20my%20storefront%20for%20%E2%82%A610%2C000."
+                href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}

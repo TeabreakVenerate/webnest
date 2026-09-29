@@ -3,6 +3,8 @@
 import React, { useState, useMemo } from "react";
 import { Check, Sparkles, MessageCircle, HelpCircle } from "lucide-react";
 
+import { SITE_CONFIG } from "@/lib/constants";
+
 interface AddonItem {
   id: string;
   name: string;
@@ -11,9 +13,9 @@ interface AddonItem {
   tag?: string;
 }
 
-const BASE_PRICE = 10000;
-const PRO_BUNDLE_PRICE = 35000;
-const WHATSAPP_PHONE = "2349000000000"; // Endurance Owie WebNest business line
+const BASE_PRICE = SITE_CONFIG.basePrice;
+const PRO_BUNDLE_PRICE = SITE_CONFIG.proBundlePrice;
+const WHATSAPP_PHONE = SITE_CONFIG.whatsappNumber;
 
 const ADDONS: AddonItem[] = [
   {

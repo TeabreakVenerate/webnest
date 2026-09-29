@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { HeroBadge } from "./HeroBadge";
 import { MessageCircle, ShoppingBag, ShieldCheck, Clock, Check, Plus, Minus } from "lucide-react";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export function Hero() {
   const [cartCount, setCartCount] = useState(2);
@@ -188,7 +189,9 @@ export function Hero() {
                 </div>
                 <div className="mt-2.5">
                   <a
-                    href="https://wa.me/2349000000000?text=Hello%20WebNest!%20I%20tested%20the%20live%20demo%20and%20want%20to%20build%20my%20store."
+                    href={`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
+                      "Hello WebNest! I tested the live demo and want to build my store."
+                    )}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-3 py-2 text-xs font-semibold text-neutral-950 transition-[transform,background-color] duration-150 hover:bg-emerald-400 active:scale-[0.97]"

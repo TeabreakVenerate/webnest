@@ -2,6 +2,7 @@
 
 import React from "react";
 import { StoreShowcaseCard, StoreProject } from "./StoreShowcaseCard";
+import { SITE_CONFIG } from "@/lib/constants";
 
 const PROJECTS: StoreProject[] = [
   {
@@ -35,7 +36,9 @@ const PROJECTS: StoreProject[] = [
     tags: ["Mobile Catalog", "1-Tap Checkout", "WhatsApp Receipts", "48h Build"],
     gradient: "bg-gradient-to-br from-amber-950 via-neutral-900 to-neutral-950",
     icon: "food",
-    demoUrl: "https://wa.me/2349000000000?text=Hello%20Endurance!%20I%20want%20a%20pastry%20catalog%20demo.",
+    demoUrl: `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
+      "Hello Endurance! I want a pastry catalog demo."
+    )}`,
   },
 ];
 
