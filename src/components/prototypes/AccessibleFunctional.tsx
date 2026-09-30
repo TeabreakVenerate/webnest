@@ -137,14 +137,17 @@ export function AccessibleFunctional() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {[
-              { name: "Elikar Essentials", cat: "Dorm Kits & Care Packages", url: "https://elikar.vercel.app" },
-              { name: "Light Pen Hub", cat: "Bookstore & Author Platform", url: "https://lightpenhub.com" },
-              { name: "Campus Treats", cat: "Pastries & Fresh Food Menu", url: "https://pastry.webnest.store" },
+              { name: "Word Study Unit", cat: "Chaplaincy Platform", url: "https://wordstudycu.vercel.app", img: "/screenshots/wordstudy.png" },
+              { name: "Elikar Essentials", cat: "Dorm Packages", url: "https://eliikar.vercel.app", img: "/screenshots/eliikar.png" },
+              { name: "Light Pen Hub", cat: "Creator Portal", url: "https://light-pen-hub.vercel.app", img: "/screenshots/light-pen-hub.png" },
             ].map((item, idx) => (
-              <div key={idx} className="rounded-lg border border-neutral-200 bg-white p-6 flex flex-col justify-between shadow-sm hover:border-neutral-300 transition-colors">
+              <div key={idx} className="rounded-lg border border-neutral-200 bg-white p-5 flex flex-col justify-between shadow-sm hover:border-neutral-300 transition-colors group">
                 <div>
+                  <div className="aspect-[16/10] rounded-md overflow-hidden border border-neutral-200 bg-neutral-50 mb-4">
+                    <img src={item.img} alt={item.name} className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105" />
+                  </div>
                   <span className="text-xs font-normal uppercase tracking-wider text-neutral-500">{item.cat}</span>
-                  <h3 className="text-lg font-normal text-neutral-900 mt-1">{item.name}</h3>
+                  <h3 className="text-base font-normal text-neutral-900 mt-1">{item.name}</h3>
                   <p className="text-sm text-neutral-600 mt-2 leading-relaxed">
                     Live production deployment with automated WhatsApp order receipts.
                   </p>

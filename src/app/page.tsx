@@ -1,7 +1,8 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { PricingCalculator } from "@/components/PricingCalculator";
+import { TrustBadges } from "@/components/TrustBadges";
 import { Showcase } from "@/components/Showcase";
+import { PricingCalculator } from "@/components/PricingCalculator";
 import { HowItWorks } from "@/components/HowItWorks";
 import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <TrustBadges />
         <Showcase />
         <PricingCalculator />
         <HowItWorks />

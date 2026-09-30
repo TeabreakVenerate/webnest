@@ -136,27 +136,30 @@ export function AppleGlassmorphism() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { name: "Elikar Essentials", cat: "Dorm Kits", url: "https://elikar.vercel.app", stat: "0.38s Load" },
-            { name: "Light Pen Hub", cat: "Bookstore", url: "https://lightpenhub.com", stat: "100% Uptime" },
-            { name: "Campus Treats", cat: "Bakery Orders", url: "https://pastry.webnest.store", stat: "80% Conversion" },
+            { name: "Word Study Unit", cat: "Chaplaincy Platform", url: "https://wordstudycu.vercel.app", img: "/screenshots/wordstudy.png", stat: "Live Campus" },
+            { name: "Elikar Essentials", cat: "Dorm Packages", url: "https://eliikar.vercel.app", img: "/screenshots/eliikar.png", stat: "0.38s Load" },
+            { name: "Light Pen Hub", cat: "Author Monetization", url: "https://light-pen-hub.vercel.app", img: "/screenshots/light-pen-hub.png", stat: "100% Uptime" },
           ].map((item, i) => (
-            <div key={i} className="group rounded-3xl border border-[#0F3D70]/15 bg-white/80 p-5 shadow-sm hover:shadow-md transition-all backdrop-blur-md">
-              <div className="flex items-center gap-1.5 rounded-full border border-[#0F3D70]/15 bg-neutral-50 px-3 py-1 text-[11px] font-mono text-[#0F3D70] mb-4">
+            <div key={i} className="group rounded-3xl border border-[#0F3D70]/15 bg-white/80 p-4 shadow-sm hover:shadow-md transition-all backdrop-blur-md flex flex-col justify-between">
+              <div className="flex items-center gap-1.5 rounded-full border border-[#0F3D70]/15 bg-neutral-50 px-3 py-1 text-[11px] font-mono text-[#0F3D70] mb-3">
                 <Lock className="h-3 w-3 text-[#0F3D70]" />
                 <span className="truncate">{item.url}</span>
               </div>
-              <div className="aspect-[16/10] rounded-2xl bg-[#0F3D70]/5 border border-[#0F3D70]/10 p-4 flex flex-col justify-between">
-                <span className="text-xs font-semibold text-[#0F3D70]/60">{item.cat}</span>
-                <span className="text-base font-bold text-[#0F3D70]">{item.name}</span>
-                <span className="text-[11px] font-bold text-[#0F3D70] bg-[#FFC107] px-2 py-0.5 rounded-full w-max">
+              <div className="aspect-[16/10] rounded-2xl overflow-hidden border border-[#0F3D70]/10 relative">
+                <img src={item.img} alt={item.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+                <span className="absolute bottom-2 right-2 text-[10px] font-bold text-[#0F3D70] bg-[#FFC107] px-2 py-0.5 rounded-full shadow-xs">
                   {item.stat}
                 </span>
+              </div>
+              <div className="mt-3">
+                <span className="text-[11px] font-semibold text-[#0F3D70]/60 block">{item.cat}</span>
+                <span className="text-base font-bold text-[#0F3D70]">{item.name}</span>
               </div>
               <a
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 flex items-center justify-between text-xs font-bold text-[#0F3D70] hover:text-[#0F3D70]/80 pt-2"
+                className="mt-3 flex items-center justify-between text-xs font-bold text-[#0F3D70] hover:text-[#0F3D70]/80 pt-2 border-t border-[#0F3D70]/10"
               >
                 <span>Explore store</span>
                 <ExternalLink className="h-3.5 w-3.5" />

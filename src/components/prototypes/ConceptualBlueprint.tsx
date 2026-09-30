@@ -124,22 +124,27 @@ export function ConceptualBlueprint() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { tag: "SPEC_01", title: "Elikar Essentials", cat: "Dorm Kits", url: "https://elikar.vercel.app", metric: "T_LOAD = 0.38s" },
-            { tag: "SPEC_02", title: "Light Pen Hub", cat: "Creator Bookstore", url: "https://lightpenhub.com", metric: "UPTIME = 100%" },
-            { tag: "SPEC_03", title: "Campus Pastry", cat: "Bakery Orders", url: "https://pastry.webnest.store", metric: "CONV = 80%" },
+            { tag: "SPEC_01", title: "Word Study CU", cat: "Chaplaincy Unit", url: "https://wordstudycu.vercel.app", img: "/screenshots/wordstudy.png", metric: "CAMPUS_UNIT" },
+            { tag: "SPEC_02", title: "Elikar Essentials", cat: "Dorm Packages", url: "https://eliikar.vercel.app", img: "/screenshots/eliikar.png", metric: "T_LOAD = 0.38s" },
+            { tag: "SPEC_03", title: "Light Pen Hub", cat: "Creator Portal", url: "https://light-pen-hub.vercel.app", img: "/screenshots/light-pen-hub.png", metric: "UPTIME = 100%" },
           ].map((item) => (
-            <div key={item.tag} className="border-2 border-[#0F3D70] bg-white p-5 shadow-[4px_4px_0_0_#0F3D70]">
-              <div className="flex justify-between items-center text-[10px] font-black text-[#0F3D70] border-b-2 border-[#0F3D70] pb-2 mb-3">
-                <span className="bg-[#FFC107] px-1.5 py-0.5">{item.tag}</span>
-                <span>{item.metric}</span>
+            <div key={item.tag} className="border-2 border-[#0F3D70] bg-white p-4 shadow-[4px_4px_0_0_#0F3D70] flex flex-col justify-between group">
+              <div>
+                <div className="flex justify-between items-center text-[10px] font-black text-[#0F3D70] border-b-2 border-[#0F3D70] pb-2 mb-3">
+                  <span className="bg-[#FFC107] px-1.5 py-0.5">{item.tag}</span>
+                  <span>{item.metric}</span>
+                </div>
+                <div className="aspect-[16/10] overflow-hidden border-2 border-[#0F3D70] bg-neutral-50 mb-3">
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105" />
+                </div>
+                <h3 className="text-base font-black text-[#0F3D70] uppercase">{item.title}</h3>
+                <p className="text-xs font-medium text-[#1A1A1A]/80 mt-1">{item.cat} • Architecture verified</p>
               </div>
-              <h3 className="text-base font-black text-[#0F3D70] uppercase">{item.title}</h3>
-              <p className="text-xs font-medium text-[#1A1A1A]/80 mt-1">{item.cat} • Architecture verified</p>
               <a
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-1.5 text-xs font-black uppercase text-[#0F3D70] underline hover:text-[#0F3D70]/80"
+                className="mt-4 pt-2 border-t-2 border-[#0F3D70]/20 inline-flex items-center justify-between text-xs font-black uppercase text-[#0F3D70] hover:text-[#0F3D70]/80"
               >
                 <span>OPEN_SPEC</span>
                 <ExternalLink className="h-3.5 w-3.5" />

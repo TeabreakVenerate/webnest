@@ -122,27 +122,33 @@ export function EmilTactile() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           {[
-            { title: "Elikar Essentials", type: "Care Packages", load: "0.38s Edge", link: "https://elikar.vercel.app" },
-            { title: "Light Pen Hub", type: "Creative Books", load: "100% Uptime", link: "https://lightpenhub.com" },
-            { title: "Campus Treats", type: "Bakery Orders", load: "80% Checkout", link: "https://pastry.webnest.store" },
+            { title: "Word Study CU", type: "Chaplaincy Unit", load: "Official Unit", link: "https://wordstudycu.vercel.app", img: "/screenshots/wordstudy.png" },
+            { title: "Elikar Essentials", type: "Care Packages", load: "0.38s Edge", link: "https://eliikar.vercel.app", img: "/screenshots/eliikar.png" },
+            { title: "Light Pen Hub", type: "Creator Platform", load: "100% Uptime", link: "https://light-pen-hub.vercel.app", img: "/screenshots/light-pen-hub.png" },
           ].map((item, i) => (
             <div
               key={i}
-              className="rounded-2xl border border-[#0F3D70]/15 bg-white p-5 hover:border-[#0F3D70]/40 transition-colors duration-150 shadow-sm"
+              className="rounded-2xl border border-[#0F3D70]/15 bg-white p-4 hover:border-[#0F3D70]/40 transition-all duration-150 shadow-sm flex flex-col justify-between group active:scale-[0.99]"
             >
-              <div className="flex justify-between items-center text-[11px] font-mono text-[#0F3D70] border-b border-[#0F3D70]/10 pb-3 mb-4">
-                <span>{item.type}</span>
-                <span className="bg-[#FFC107] px-2 py-0.5 rounded text-[10px] font-bold">{item.load}</span>
+              <div>
+                <div className="flex justify-between items-center text-[11px] font-mono text-[#0F3D70] border-b border-[#0F3D70]/10 pb-2.5 mb-3">
+                  <span>{item.type}</span>
+                  <span className="bg-[#FFC107] px-2 py-0.5 rounded text-[10px] font-bold text-[#0F3D70]">{item.load}</span>
+                </div>
+                <div className="aspect-[16/10] rounded-xl overflow-hidden border border-[#0F3D70]/10 bg-neutral-50 mb-3">
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105" />
+                </div>
+                <h3 className="text-base font-bold text-[#0F3D70]">{item.title}</h3>
+                <p className="text-xs text-[#1A1A1A]/70 mt-1">Live automated WhatsApp & Telegram routing.</p>
               </div>
-              <h3 className="text-base font-bold text-[#0F3D70]">{item.title}</h3>
-              <p className="text-xs text-[#1A1A1A]/70 mt-1">Custom Telegram and WhatsApp routing architecture.</p>
               <a
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-[#0F3D70] hover:underline"
+                className="mt-4 inline-flex items-center justify-between text-xs font-bold text-[#0F3D70] hover:underline pt-2 border-t border-[#0F3D70]/10"
               >
-                Inspect store ↗
+                <span>Inspect store</span>
+                <span className="text-xs">↗</span>
               </a>
             </div>
           ))}

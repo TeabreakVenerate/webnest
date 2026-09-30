@@ -117,16 +117,19 @@ export function EditorialLuxury() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { title: "Elikar Essentials", genre: "Care Packages & Curated Kits", url: "https://elikar.vercel.app", note: "0.38s Load • High Volume" },
-            { title: "Light Pen Hub", genre: "Literary Bookstore & Portal", url: "https://lightpenhub.com", note: "100% Uptime • Global DNS" },
-            { title: "Campus Confectionery", genre: "Artisanal Bakery & Desserts", url: "https://pastry.webnest.store", note: "80% WhatsApp Conversion" },
+            { title: "Word Study CU", genre: "Chaplaincy Platform", url: "https://wordstudycu.vercel.app", img: "/screenshots/wordstudy.png", note: "Official University Unit" },
+            { title: "Elikar Essentials", genre: "Curated Campus Kits", url: "https://eliikar.vercel.app", img: "/screenshots/eliikar.png", note: "0.38s Load • High Volume" },
+            { title: "Light Pen Hub", genre: "Literary Portal & Store", url: "https://light-pen-hub.vercel.app", img: "/screenshots/light-pen-hub.png", note: "100% Uptime • Direct Support" },
           ].map((item, idx) => (
-            <div key={idx} className="border border-[#E3DEC3] bg-[#FFFFFF] p-6 flex flex-col justify-between">
+            <div key={idx} className="border border-[#E3DEC3] bg-[#FFFFFF] p-6 flex flex-col justify-between group">
               <div>
                 <span className="text-[10px] font-sans tracking-widest uppercase text-[#967C5A] block mb-2">{item.genre}</span>
+                <div className="aspect-[16/10] overflow-hidden border border-[#E3DEC3] bg-[#FBF9F5] mb-4">
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+                </div>
                 <h3 className="text-xl font-normal text-[#1F1D1A]">{item.title}</h3>
-                <p className="text-xs font-sans text-[#756F64] mt-3 leading-relaxed">
-                  Engineered with Telegram and WhatsApp dual-routing for Covenant University students.
+                <p className="text-xs font-sans text-[#756F64] mt-2 leading-relaxed">
+                  Tailored static deployment with instant automated WhatsApp checkout routing.
                 </p>
                 <div className="mt-4 pt-3 border-t border-[#F0ECE1] text-[11px] font-sans text-[#5E594F]">
                   {item.note}
