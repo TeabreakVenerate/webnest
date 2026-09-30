@@ -38,7 +38,7 @@ export function EditorialLuxury() {
     : SITE_CONFIG.basePrice + Array.from(selectedAddons).reduce((s, id) => s + (ADDONS.find(a => a.id === id)?.price || 0), 0);
 
   const waHref = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
-    `Greetings Endurance, I would like to commission an Editorial Luxury Webnest storefront. Total: ₦${total.toLocaleString()}`
+    `Hi Webnests, I would like to commission an Editorial Luxury Webnest storefront. Total: ₦${total.toLocaleString()}`
   )}`;
 
   return (

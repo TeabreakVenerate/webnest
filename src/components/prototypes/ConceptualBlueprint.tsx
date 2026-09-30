@@ -38,7 +38,7 @@ export function ConceptualBlueprint() {
     : SITE_CONFIG.basePrice + Array.from(selectedAddons).reduce((s, id) => s + (ADDONS.find(a => a.id === id)?.price || 0), 0);
 
   const waHref = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
-    `[ARCHITECTURAL BLUEPRINT] Approving Webnest storefront specification. Total: ₦${total.toLocaleString()}`
+    `Hi Webnests, [ARCHITECTURAL BLUEPRINT] Approving Webnest storefront specification. Total: ₦${total.toLocaleString()}`
   )}`;
 
   return (

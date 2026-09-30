@@ -38,7 +38,7 @@ export function AccessibleFunctional() {
     : SITE_CONFIG.basePrice + Array.from(selectedAddons).reduce((s, id) => s + (ADDONS.find(a => a.id === id)?.price || 0), 0);
 
   const waHref = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
-    `Hello Endurance Owie, I want to commission an Accessible Webnest storefront. Selected Total: ₦${total.toLocaleString()}`
+    `Hi Webnests, I want to commission an Accessible Webnest storefront. Selected Total: ₦${total.toLocaleString()}`
   )}`;
 
   return (

@@ -111,7 +111,7 @@ export default function HomePage() {
 
   const hasDomain = selectedAddons.has("domain");
 
-  const waOrderText = `Hello Endurance Owie, I want to order a Webnest storefront. Package: ${
+  const waOrderText = `Hi Webnests, I want to order a Webnest storefront. Package: ${
     isPro ? "Pro Bundle (₦45,000)" : `Base ₦15k + ${Array.from(selectedAddons).join(", ")}`
   }. Total: ₦${calculatedTotal.toLocaleString()}${hasDomain ? " (+ Custom Domain inquiry)" : ""}`;
 
@@ -441,7 +441,14 @@ export default function HomePage() {
             <span className="text-[11px] text-[#756F64]">Built for Business Owners, Freelancers & Vendors by Endurance Owie</span>
           </div>
           <div className="flex flex-wrap gap-6 text-xs text-[#545047]">
-            <a href={`https://wa.me/${SITE_CONFIG.whatsappNumber}`} target="_blank" rel="noopener noreferrer" className="hover:text-black">
+            <a
+              href={`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
+                "Hi Webnests, I have an inquiry about building a storefront."
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-black"
+            >
               WhatsApp: {SITE_CONFIG.whatsappDisplay}
             </a>
             <a href={`mailto:${SITE_CONFIG.email}`} className="hover:text-black">

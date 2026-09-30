@@ -6,7 +6,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 
 export function Footer() {
   const whatsappHref = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
-    "Hello Endurance! I want to order a Webnest storefront."
+    "Hi Webnests, I want to order a Webnest storefront."
   )}`;
 
   return (

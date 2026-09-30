@@ -38,7 +38,7 @@ export function EmilTactile() {
     : SITE_CONFIG.basePrice + Array.from(selectedAddons).reduce((s, id) => s + (ADDONS.find(a => a.id === id)?.price || 0), 0);
 
   const waHref = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
-    `Hello Endurance! Inquiring about Emil Tactile (Covenant White) storefront. Total: ₦${total.toLocaleString()}`
+    `Hi Webnests, I want to inquire about an Emil Tactile Webnest storefront. Total: ₦${total.toLocaleString()}`
   )}`;
 
   return (

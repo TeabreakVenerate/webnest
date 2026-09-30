@@ -38,7 +38,7 @@ export function AppleGlassmorphism() {
     : SITE_CONFIG.basePrice + Array.from(selectedAddons).reduce((s, id) => s + (ADDONS.find(a => a.id === id)?.price || 0), 0);
 
   const waHref = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
-    `Hello Endurance! Inquiring about Apple Glass (Covenant White) Webnest package. Total: ₦${total.toLocaleString()}`
+    `Hi Webnests, I want to inquire about an Apple Glass Webnest storefront. Total: ₦${total.toLocaleString()}`
   )}`;
 
   return (

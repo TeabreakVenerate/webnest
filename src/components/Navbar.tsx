@@ -15,7 +15,7 @@ export function Navbar() {
   ];
 
   const whatsappHref = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
-    "Hello Webnest! I want to launch my storefront for ₦10,000."
+    "Hi Webnests, I want to launch my storefront for ₦15,000."
   )}`;
 
   return (
