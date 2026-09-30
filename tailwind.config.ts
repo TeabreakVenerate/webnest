@@ -9,6 +9,10 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        serif: ["var(--font-serif)", "Newsreader", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "Inter", "-apple-system", "sans-serif"],
+      },
       colors: {
         "clinical-white": "#FFFFFF",
         "covenant-blue": "#0F3D70",

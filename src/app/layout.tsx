@@ -1,16 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Newsreader } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-sans",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  display: "swap",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
 });
 
 export const metadata: Metadata = {
-  title: "Webnest | 1-Click WhatsApp Storefronts in 48 Hours",
+  title: "Webnest | 1-Click Storefronts in 2 Days or Less",
   description:
-    "Functional, fast e-commerce setups for campus entrepreneurs and local retail boutiques within 48 hours. Flat ₦10,000 base fee with zero monthly SaaS fees.",
+    "Clean, high-converting digital storefronts for business owners, freelancers, and vendors. Flat ₦15,000 base fee with built-in multi-item cart and zero monthly SaaS fees.",
 };
 
 export const viewport: Viewport = {
@@ -25,9 +33,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={`scroll-smooth ${inter.variable} ${newsreader.variable}`}>
       <body
-        className={`${inter.className} min-h-screen bg-white text-[#1A1A1A] antialiased selection:bg-[#FFC107] selection:text-[#0F3D70]`}
+        className={`${inter.className} min-h-screen bg-[#FBF9F5] text-[#22201D] antialiased selection:bg-[#C9A982]/30 selection:text-[#22201D]`}
       >
         {children}
       </body>

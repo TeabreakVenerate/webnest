@@ -4,23 +4,19 @@
 
 @layer base {
   :root {
-    --background: #FFFFFF;
-    --foreground: #0F3D70;
-  }
-
-  * {
-    border-color: #0F3D70;
+    --background: #FBF9F5;
+    --foreground: #22201D;
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: #FFFFFF;
-    color: #0F3D70;
+    background-color: #FBF9F5;
+    color: #22201D;
   }
 
   body {
-    background-color: #FFFFFF;
-    color: #1A1A1A;
+    background-color: #FBF9F5;
+    color: #22201D;
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

@@ -1,10 +1,10 @@
 export const SITE_CONFIG = {
-  name: "WebNest",
-  tagline: "Turn your WhatsApp status into a 1-click store in 48 hours",
+  name: "Webnest",
+  tagline: "1-Click storefronts for business owners, freelancers, and vendors in 2 days or less",
   architect: "Endurance Owie",
-  whatsappNumber: "2347080378857",
-  whatsappDisplay: "+234 708 037 8857",
+  whatsappNumber: "2349139386537",
+  whatsappDisplay: "+234 913 938 6537",
   email: "contact@endurance.website",
-  basePrice: 10000,
-  proBundlePrice: 35000,
+  basePrice: 15000,
+  proBundlePrice: 45000,
 };
