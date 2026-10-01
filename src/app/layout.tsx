@@ -16,7 +16,7 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: "Webnest | 1-Click Storefronts in 2 Days or Less",
+  title: "Webnest | 1-Click Storefronts in 72 Hours or Less",
   description:
     "Clean, high-converting digital storefronts for business owners, freelancers, and vendors. Flat ₦15,000 base fee with built-in multi-item cart and zero monthly SaaS fees.",
 };
