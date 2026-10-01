@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   title: "Webnest | 1-Click Storefronts in 72 Hours or Less",
   description:
     "Clean, high-converting digital storefronts for business owners, freelancers, and vendors. Flat ₦25,000 base fee with built-in multi-item cart, backend inventory tracking, and zero monthly SaaS fees.",
+  icons: {
+    icon: "/icon.png",
+    apple: "/icon.png",
+  },
 };
 
 export const viewport: Viewport = {
