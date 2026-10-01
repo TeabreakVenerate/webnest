@@ -282,10 +282,6 @@ export default function HomePage() {
               <p className="text-xs text-[#756F64] mt-2 leading-relaxed">
                 Campus room supplies and dorm packages with instant order checkout and telegram routing.
               </p>
-              <div className="mt-4 pt-3 border-t border-[#F0ECE1] text-[11px] text-[#5E594F] flex items-center justify-between font-mono">
-                <span>0.38s Load Speed</span>
-                <span className="text-emerald-700 font-semibold">Live in Dorms</span>
-              </div>
             </div>
             <a
               href="https://eliikar.vercel.app"
@@ -308,10 +304,6 @@ export default function HomePage() {
               <p className="text-xs text-[#756F64] mt-2 leading-relaxed">
                 Digital book catalog and reader community portal with direct reader checkout and persona switcher.
               </p>
-              <div className="mt-4 pt-3 border-t border-[#F0ECE1] text-[11px] text-[#5E594F] flex items-center justify-between font-mono">
-                <span>100% Uptime</span>
-                <span className="text-emerald-700 font-semibold">Active Readers</span>
-              </div>
             </div>
             <a
               href="https://light-pen-hub.vercel.app"
@@ -334,10 +326,6 @@ export default function HomePage() {
               <p className="text-xs text-[#756F64] mt-2 leading-relaxed">
                 Systems architecture, autonomous agent pipelines, and productized web infrastructure showcase.
               </p>
-              <div className="mt-4 pt-3 border-t border-[#F0ECE1] text-[11px] text-[#5E594F] flex items-center justify-between font-mono">
-                <span>Custom Architecture</span>
-                <span className="text-emerald-700 font-semibold">Live Production</span>
-              </div>
             </div>
             <a
               href="https://endurance.website"
