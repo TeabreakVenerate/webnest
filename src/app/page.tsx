@@ -75,14 +75,46 @@ const FAQS = [
   },
 ];
 
+const CASE_STUDIES = [
+  {
+    id: "bloombye",
+    title: "Bloom by E",
+    category: "Campus Essentials & Dorm Pre-Orders",
+    desc: "A digital storefront for campus resumption essentials. Students can pre-order dorm room setups or individual stationery items and have them delivered directly to their hostels.",
+    url: "https://bloombye.webnests.site",
+    img: "/screenshots/bloombye.png",
+  },
+  {
+    id: "cakesbynessa",
+    title: "Cakes by Nessa",
+    category: "Custom Celebration Cakes & Pastries",
+    desc: "A bakery storefront for daily pre-orders and custom event requests. Customers can view the current collection or send flavor details for a bespoke cake.",
+    url: "https://cakesbynessa.webnests.site",
+    img: "/screenshots/cakesbynessa.png",
+  },
+  {
+    id: "tangbows",
+    title: "Tang Bows & Crafts",
+    category: "Bespoke Bows & Event Commissions",
+    desc: "A digital lookbook for bows, crafts, and gift combos. Customers can browse the latest collections and request custom event commissions.",
+    url: "https://tangbows.webnests.site",
+    img: "/screenshots/tangbows.png",
+  }
+];
+
 export default function HomePage() {
   const [selectedAddons, setSelectedAddons] = useState<Set<string>>(new Set(["admin", "seo_basic"]));
-  const [isPro, setIsPro] = useState(false);
+  const [plan, setPlan] = useState<"minimalist" | "base" | "pro">("base");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleAddon = (id: string) => {
-    setIsPro(false);
+    if (plan === "minimalist") {
+      setPlan("base");
+    } else if (plan === "pro") {
+      setPlan("base");
+    }
+    
     setSelectedAddons((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
@@ -91,27 +123,32 @@ export default function HomePage() {
     });
   };
 
-  const setProMode = (pro: boolean) => {
-    setIsPro(pro);
-    if (pro) {
+  const changePlan = (newPlan: "minimalist" | "base" | "pro") => {
+    setPlan(newPlan);
+    if (newPlan === "pro") {
       setSelectedAddons(new Set(["admin", "seo_basic", "analytics"]));
+    } else if (newPlan === "minimalist") {
+      setSelectedAddons(new Set());
+    } else if (newPlan === "base") {
+      setSelectedAddons(new Set(["admin", "seo_basic"]));
     }
   };
 
-  const calculatedTotal = isPro
+  const calculatedTotal = plan === "pro"
     ? SITE_CONFIG.proBundlePrice
-    : SITE_CONFIG.basePrice +
-      Array.from(selectedAddons).reduce((s, id) => s + (ADDONS.find((a) => a.id === id)?.price || 0), 0);
+    : plan === "minimalist"
+    ? SITE_CONFIG.minimalistPrice + Array.from(selectedAddons).reduce((s, id) => s + (ADDONS.find((a) => a.id === id)?.price || 0), 0)
+    : SITE_CONFIG.basePrice + Array.from(selectedAddons).reduce((s, id) => s + (ADDONS.find((a) => a.id === id)?.price || 0), 0);
 
   const hasDomain = selectedAddons.has("domain");
 
   const waOrderText = `Hi Webnests, I want to order a Webnest storefront. Package: ${
-    isPro ? "Pro Bundle (₦45,000)" : `Base ₦25k + ${selectedAddons.size > 0 ? Array.from(selectedAddons).join(", ") : "No Add-ons"}`
+    plan === "pro" ? "Pro Bundle (₦45,000)" : plan === "minimalist" ? `Minimalist ₦10k + ${selectedAddons.size > 0 ? Array.from(selectedAddons).join(", ") : "No Add-ons"}` : `Base ₦25k + ${selectedAddons.size > 0 ? Array.from(selectedAddons).join(", ") : "No Add-ons"}`
   }. Total: ₦${calculatedTotal.toLocaleString()}${hasDomain ? " (+ Custom Domain inquiry)" : ""}`;
 
   const waHref = `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(waOrderText)}`;
 
-  const dynamicCtaLabel = `Order on WhatsApp (₦${calculatedTotal.toLocaleString()}${hasDomain && !isPro ? " + Varies" : ""})`;
+  const dynamicCtaLabel = `Order on WhatsApp (₦${calculatedTotal.toLocaleString()}${hasDomain && plan !== "pro" ? " + Varies" : ""})`;
 
   return (
     <div className="min-h-screen bg-[#FBF9F5] text-[#22201D] font-sans selection:bg-[#C9A982]/30 selection:text-[#22201D]">
@@ -212,7 +249,7 @@ export default function HomePage() {
         <h1 className="text-3xl sm:text-5xl md:text-7xl font-normal tracking-tight text-[#1F1D1A] leading-[1.15] font-serif">
           Stop losing client orders in messy WhatsApp DMs.
           <span className="italic block font-normal text-[#8A7150] mt-3">
-            Get a clean, 1-click storefront for ₦25,000.
+            Get a clean, 1-click storefront.
           </span>
         </h1>
 
@@ -225,7 +262,7 @@ export default function HomePage() {
             href="#pricing"
             className="w-full sm:w-auto border border-[#22201D] bg-[#22201D] text-[#FBF9F5] px-8 py-4 text-xs tracking-widest uppercase hover:bg-transparent hover:text-[#22201D] transition-colors duration-200 text-center min-h-[48px] flex items-center justify-center"
           >
-            Configure Store Package (₦25,000)
+            Configure Store Package
           </a>
           <a
             href="#showcase"
@@ -258,55 +295,58 @@ export default function HomePage() {
       {/* Case Studies Showcase */}
       <section id="showcase" className="mx-auto max-w-5xl px-4 sm:px-6 py-16 sm:py-20 border-t border-[#E8E4DA]">
         <div className="mb-10 sm:mb-12">
-          <span className="text-xs tracking-widest uppercase text-[#967C5A]">Verified Case Study</span>
+          <span className="text-xs tracking-widest uppercase text-[#967C5A]">Verified Case Studies</span>
           <h2 className="text-2xl sm:text-4xl font-normal text-[#1F1D1A] font-serif mt-2">Real systems taking orders right now</h2>
           <p className="text-xs text-[#756F64] mt-1">Every storefront runs on free cloud edge hosting and routes straight to WhatsApp or Telegram.</p>
         </div>
 
-        {/* Featured Case Study: Elikar Essentials */}
-        <div className="border border-[#E3DEC3] bg-white p-6 sm:p-8 flex flex-col md:flex-row gap-8 items-center justify-between group hover:border-[#22201D] transition-colors shadow-sm">
-          <div className="w-full md:w-1/2">
-            <span className="text-[10px] tracking-widest uppercase text-[#967C5A] block mb-2 font-mono">Hostel Care Packages & Campus Essentials</span>
-            <div className="aspect-[16/10] overflow-hidden border border-[#E3DEC3] bg-[#FBF9F5] rounded-sm">
-              <img
-                src="/screenshots/eliikar.png"
-                alt="Elikar Essentials"
-                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-          </div>
-
-          <div className="w-full md:w-1/2 flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="h-2 w-2 rounded-full bg-emerald-600"></span>
-                <span className="text-[11px] font-mono text-emerald-800 uppercase tracking-wider">Live Production System</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-normal font-serif text-[#1F1D1A]">Elikar Essentials</h3>
-              <p className="text-xs sm:text-sm text-[#756F64] mt-3 leading-relaxed">
-                Campus room supplies, dorm provisions, and student care packages. Features fast product browsing, instant multi-item cart drawer checkout, and automated routing straight to Telegram with zero monthly hosting costs.
-              </p>
-              <div className="mt-6 pt-4 border-t border-[#F0ECE1] grid grid-cols-2 gap-4 text-xs font-mono text-[#545047]">
-                <div>
-                  <span className="text-[10px] uppercase text-[#967C5A] block">Hosting</span>
-                  <span>₦0 / Month (Vercel)</span>
-                </div>
-                <div>
-                  <span className="text-[10px] uppercase text-[#967C5A] block">Order Channel</span>
-                  <span>1-Tap Direct Checkout</span>
+        <div className="flex flex-col gap-12 sm:gap-16">
+          {CASE_STUDIES.map((study) => (
+            <div key={study.id} className="border border-[#E3DEC3] bg-white p-6 sm:p-8 flex flex-col md:flex-row gap-8 items-center justify-between group hover:border-[#22201D] transition-colors shadow-sm">
+              <div className="w-full md:w-1/2">
+                <span className="text-[10px] tracking-widest uppercase text-[#967C5A] block mb-2 font-mono">{study.category}</span>
+                <div className="aspect-[16/10] overflow-hidden border border-[#E3DEC3] bg-[#FBF9F5] rounded-sm">
+                  <img
+                    src={study.img}
+                    alt={study.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
               </div>
-            </div>
 
-            <a
-              href="https://eliikar.vercel.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2 border border-[#22201D] bg-[#22201D] text-[#FBF9F5] px-6 py-3 text-xs tracking-widest uppercase hover:bg-transparent hover:text-[#22201D] transition-colors duration-200 w-fit font-mono"
-            >
-              Open Live Store (eliikar.vercel.app) ↗
-            </a>
-          </div>
+              <div className="w-full md:w-1/2 flex flex-col justify-between h-full">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="h-2 w-2 rounded-full bg-emerald-600"></span>
+                    <span className="text-[11px] font-mono text-emerald-800 uppercase tracking-wider">Live Production System</span>
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-normal font-serif text-[#1F1D1A]">{study.title}</h3>
+                  <p className="text-xs sm:text-sm text-[#756F64] mt-3 leading-relaxed">
+                    {study.desc}
+                  </p>
+                  <div className="mt-6 pt-4 border-t border-[#F0ECE1] grid grid-cols-2 gap-4 text-xs font-mono text-[#545047]">
+                    <div>
+                      <span className="text-[10px] uppercase text-[#967C5A] block">Hosting</span>
+                      <span>₦0 / Month</span>
+                    </div>
+                    <div>
+                      <span className="text-[10px] uppercase text-[#967C5A] block">Order Channel</span>
+                      <span>Direct Checkout</span>
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href={study.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 inline-flex items-center gap-2 border border-[#22201D] bg-[#22201D] text-[#FBF9F5] px-6 py-3 text-xs tracking-widest uppercase hover:bg-transparent hover:text-[#22201D] transition-colors duration-200 w-fit font-mono"
+                >
+                  Open Live Store ({study.url.replace("https://", "")}) ↗
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -314,8 +354,8 @@ export default function HomePage() {
       <section id="pricing" className="mx-auto max-w-4xl px-4 sm:px-6 py-16 sm:py-20 border-t border-[#E8E4DA]">
         <div className="text-center max-w-xl mx-auto mb-10 sm:mb-12">
           <span className="text-xs tracking-widest uppercase text-[#967C5A]">Simple Pricing</span>
-          <h2 className="text-2xl sm:text-4xl font-normal font-serif text-[#1F1D1A] mt-2">₦25,000 base fee. Pay once, own it forever.</h2>
-          <p className="text-xs text-[#756F64] mt-2 leading-relaxed">Multi-item cart drawer and backend inventory tracking included in every store. No monthly subscriptions, no hosting bills, zero sales cuts.</p>
+          <h2 className="text-2xl sm:text-4xl font-normal font-serif text-[#1F1D1A] mt-2">Pay once, own it forever.</h2>
+          <p className="text-xs text-[#756F64] mt-2 leading-relaxed">Choose the setup that fits your business. No monthly subscriptions, no hosting bills, zero sales cuts.</p>
         </div>
 
         <div className="border border-[#E3DEC3] bg-white p-4 sm:p-8 shadow-sm">
@@ -324,20 +364,31 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-2">
               <button
                 type="button"
-                onClick={() => setProMode(false)}
+                onClick={() => changePlan("minimalist")}
                 className={`text-xs px-3 sm:px-4 py-2 uppercase tracking-wider transition-colors min-h-[44px] flex items-center ${
-                  !isPro
+                  plan === "minimalist"
                     ? "border border-[#22201D] bg-[#22201D] text-white"
                     : "border border-[#D5CFC2] text-[#545047] hover:border-[#22201D]"
                 }`}
               >
-                Custom Add-ons
+                Minimalist (₦10k)
               </button>
               <button
                 type="button"
-                onClick={() => setProMode(true)}
+                onClick={() => changePlan("base")}
                 className={`text-xs px-3 sm:px-4 py-2 uppercase tracking-wider transition-colors min-h-[44px] flex items-center ${
-                  isPro
+                  plan === "base"
+                    ? "border border-[#22201D] bg-[#22201D] text-white"
+                    : "border border-[#D5CFC2] text-[#545047] hover:border-[#22201D]"
+                }`}
+              >
+                Base Storefront (₦25k)
+              </button>
+              <button
+                type="button"
+                onClick={() => changePlan("pro")}
+                className={`text-xs px-3 sm:px-4 py-2 uppercase tracking-wider transition-colors min-h-[44px] flex items-center ${
+                  plan === "pro"
                     ? "border border-[#22201D] bg-[#22201D] text-white"
                     : "border border-[#D5CFC2] text-[#545047] hover:border-[#22201D]"
                 }`}
@@ -352,13 +403,25 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 p-4 border border-[#E8E4DA] bg-[#FBF9F5]">
               <div>
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-sm font-serif text-[#1F1D1A] font-semibold">Base Storefront Package</span>
-                  <span className="text-[10px] bg-emerald-100 text-emerald-800 font-mono px-2 py-0.5 rounded">Cart Drawer Included</span>
-                  <span className="text-[10px] bg-amber-100 text-amber-900 font-mono px-2 py-0.5 rounded">Backend Inventory Included</span>
+                  <span className="text-sm font-serif text-[#1F1D1A] font-semibold">
+                    {plan === "minimalist" ? "Minimalist Website" : "Base Storefront Package"}
+                  </span>
+                  {plan !== "minimalist" && (
+                    <>
+                      <span className="text-[10px] bg-emerald-100 text-emerald-800 font-mono px-2 py-0.5 rounded">Cart Drawer Included</span>
+                      <span className="text-[10px] bg-amber-100 text-amber-900 font-mono px-2 py-0.5 rounded">Backend Inventory Included</span>
+                    </>
+                  )}
                 </div>
-                <p className="text-xs text-[#756F64] mt-1">15 products/services with photos, descriptions, multi-item cart drawer, backend inventory tracking from mobile, and 1-tap WhatsApp checkout routing.</p>
+                <p className="text-xs text-[#756F64] mt-1">
+                  {plan === "minimalist"
+                    ? "A clean, basic digital presence. 1-tap WhatsApp contact routing. No cart drawer, no backend inventory management."
+                    : "15 products/services with photos, descriptions, multi-item cart drawer, backend inventory tracking from mobile, and 1-tap WhatsApp checkout routing."}
+                </p>
               </div>
-              <span className="text-sm font-semibold text-[#1F1D1A] self-end sm:self-center shrink-0">₦25,000</span>
+              <span className="text-sm font-semibold text-[#1F1D1A] self-end sm:self-center shrink-0">
+                {plan === "minimalist" ? "₦10,000" : "₦25,000"}
+              </span>
             </div>
 
             {/* Configurable Add-ons */}
@@ -401,11 +464,13 @@ export default function HomePage() {
             <div>
               <span className="text-xs uppercase tracking-widest text-[#756F64]">One-Time Total</span>
               <div className="text-2xl sm:text-3xl font-serif text-[#1F1D1A] mt-1 font-semibold">
-                ₦{calculatedTotal.toLocaleString()}{hasDomain && !isPro ? " + Varies" : ""}
+                ₦{calculatedTotal.toLocaleString()}{hasDomain && plan !== "pro" ? " + Varies" : ""}
               </div>
               <p className="text-[11px] text-[#756F64] mt-0.5 leading-snug">
-                {isPro
+                {plan === "pro"
                   ? "Pro Bundle: Base (₦25k) + Cart + Inventory + Order Tracking Dashboard + Google Indexing + Traffic Analytics (Save ₦7,500)"
+                  : plan === "minimalist"
+                  ? `Minimalist Package (₦10k) + ${selectedAddons.size} Add-on${selectedAddons.size === 1 ? "" : "s"}${hasDomain ? " + Domain at-cost" : ""}`
                   : `Base Package (₦25k with Cart & Inventory) + ${selectedAddons.size} Add-on${selectedAddons.size === 1 ? "" : "s"}${hasDomain ? " + Domain at-cost" : ""}`}
               </p>
             </div>
@@ -459,7 +524,7 @@ export default function HomePage() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
             <span className="font-serif text-base text-[#1F1D1A] block">Webnest</span>
-            <span className="text-[11px] text-[#756F64]">Built for Business Owners, Freelancers & Vendors by Endurance Owie</span>
+            <span className="text-[11px] text-[#756F64]">Built for Business Owners, Freelancers & Vendors</span>
           </div>
           <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6 text-xs text-[#545047]">
             <a
@@ -475,8 +540,9 @@ export default function HomePage() {
             <a href={`mailto:${SITE_CONFIG.email}`} className="hover:text-black min-h-[36px] flex items-center">
               {SITE_CONFIG.email}
             </a>
-            <a href="https://endurance.website" target="_blank" rel="noopener noreferrer" className="hover:text-black min-h-[36px] flex items-center">
-              endurance.website
+            <a href="https://webnests.site" target="_blank" rel="noopener noreferrer" className="hover:text-black min-h-[36px] flex flex-row items-center gap-2">
+              <img src="/logo.png" alt="WebNest" className="w-5 h-5 rounded-full object-cover" />
+              <span>Made by WebNest</span>
             </a>
           </div>
         </div>
