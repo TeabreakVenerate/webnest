@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { MessageSquare, Check, ArrowRight, ShieldCheck, Clock, ExternalLink, HelpCircle, Menu, X } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -107,6 +108,32 @@ export default function HomePage() {
   const [plan, setPlan] = useState<"minimalist" | "base" | "pro">("base");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 100);
+  });
+
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      scale: 0.95,
+      y: -20,
+      transition: { type: "spring", stiffness: 300, damping: 30 }
+    },
+    open: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 300, damping: 30 }
+    }
+  };
+
+  const hamburgerVariants = {
+    normal: { rotate: 0, scale: 1 },
+    scrolled: { rotate: 180, scale: 1.05 }
+  };
 
   const toggleAddon = (id: string) => {
     if (plan === "minimalist") {
@@ -153,7 +180,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#FBF9F5] text-[#22201D] font-sans selection:bg-[#C9A982]/30 selection:text-[#22201D]">
       {/* Top Sticky Navigation */}
-      <header className="border-b border-[#E8E4DA] bg-[#FBF9F5]/95 backdrop-blur-md sticky top-0 z-40">
+      {/* Top Navigation - hides on scroll */}
+      <motion.header 
+        initial={{ y: 0, opacity: 1 }}
+        animate={{ y: isScrolled ? -100 : 0, opacity: isScrolled ? 0 : 1 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="border-b border-[#E8E4DA] bg-[#FBF9F5]/95 backdrop-blur-md fixed top-0 left-0 right-0 z-40"
+      >
         <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6">
           <div className="flex flex-col">
             <span className="text-xl sm:text-2xl font-normal tracking-wide uppercase font-serif text-[#1F1D1A]">
@@ -180,64 +213,108 @@ export default function HomePage() {
               {dynamicCtaLabel}
             </a>
 
-            {/* Mobile Hamburger Toggle Button */}
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen((prev) => !prev)}
-              aria-label="Toggle navigation menu"
-              aria-expanded={mobileMenuOpen}
-              className="md:hidden p-2 text-[#1F1D1A] hover:bg-[#EFECE4] transition-colors rounded min-h-[44px] min-w-[44px] flex items-center justify-center"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation Drawer Dropdown */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-[#E8E4DA] bg-[#FBF9F5] px-4 py-6 shadow-md animate-in slide-in-from-top-2 duration-200">
-            <nav className="flex flex-col space-y-3 text-xs tracking-widest uppercase text-[#545047]">
-              <a
-                href="#showcase"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-2.5 hover:text-black border-b border-[#F0ECE1] transition-colors"
+            {/* Mobile Hamburger Toggle Button (when not scrolled) */}
+            <div className="md:hidden">
+              <motion.button
+                type="button"
+                onClick={() => setMobileMenuOpen((prev) => !prev)}
+                className="p-2 text-[#1F1D1A] hover:bg-[#EFECE4] transition-colors rounded min-h-[44px] min-w-[44px] flex items-center justify-center"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
-                Case Studies
-              </a>
-              <a
-                href="#pricing"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-2.5 hover:text-black border-b border-[#F0ECE1] transition-colors"
-              >
-                Pricing & Packages
-              </a>
-              <a
-                href="#faq"
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-2.5 hover:text-black border-b border-[#F0ECE1] transition-colors"
-              >
-                FAQ
-              </a>
-            </nav>
-
-            <div className="mt-5 pt-4 border-t border-[#E8E4DA] flex flex-col gap-3">
-              <a
-                href={waHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center border border-[#22201D] bg-[#22201D] text-[#FBF9F5] px-4 py-3.5 text-xs tracking-widest uppercase hover:bg-transparent hover:text-[#22201D] transition-colors duration-200 font-medium"
-              >
-                {dynamicCtaLabel}
-              </a>
-              <div className="flex items-center justify-between text-[11px] text-[#756F64] pt-1">
-                <span>WhatsApp: {SITE_CONFIG.whatsappDisplay}</span>
-                <span>72h Turnaround</span>
-              </div>
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </motion.button>
             </div>
           </div>
+        </div>
+      </motion.header>
+
+      {/* Floating Hamburger - visible when scrolled */}
+      <motion.div
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: isScrolled ? 1 : 0, opacity: isScrolled ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="fixed top-6 right-6 z-50 pointer-events-auto md:hidden"
+      >
+        <motion.button
+          onClick={() => setMobileMenuOpen((prev) => !prev)}
+          className="w-12 h-12 bg-[#22201D] text-[#FBF9F5] rounded-full shadow-lg flex items-center justify-center pointer-events-auto border border-[#E8E4DA]"
+          variants={hamburgerVariants as any}
+          animate={isScrolled ? "scrolled" : "normal"}
+          whileHover={{ scale: 1.1, rotate: 180 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </motion.button>
+      </motion.div>
+
+      {/* Floating Menu Popup */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-[#FBF9F5]/90 backdrop-blur-sm z-40"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+
+            <motion.div
+              variants={menuVariants as any}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-auto w-[90%] max-w-sm"
+            >
+              <div className="relative bg-[#FBF9F5] border border-[#E8E4DA] rounded-lg p-8 shadow-2xl flex flex-col items-center">
+                <motion.button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="absolute top-4 right-4 p-2 text-[#756F64] hover:text-[#1F1D1A] rounded-full transition-colors"
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <X className="w-5 h-5" />
+                </motion.button>
+
+                <div className="space-y-6 mt-4 flex flex-col w-full text-center">
+                  <a
+                    href="#showcase"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-[#1F1D1A] hover:text-[#8A7150] transition-colors font-serif text-2xl"
+                  >
+                    Case Studies
+                  </a>
+                  <a
+                    href="#pricing"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-[#1F1D1A] hover:text-[#8A7150] transition-colors font-serif text-2xl"
+                  >
+                    Pricing
+                  </a>
+                  <a
+                    href="#faq"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-[#1F1D1A] hover:text-[#8A7150] transition-colors font-serif text-2xl"
+                  >
+                    FAQ
+                  </a>
+                  
+                  <div className="pt-6 mt-4 border-t border-[#E8E4DA] w-full">
+                     <a
+                        href={waHref}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center justify-center p-4 bg-[#22201D] text-[#FBF9F5] transition-colors text-xs uppercase tracking-widest font-medium"
+                      >
+                        {dynamicCtaLabel}
+                      </a>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
-      </header>
+      </AnimatePresence>
 
       {/* Hero Section */}
       <section className="mx-auto max-w-4xl px-4 sm:px-6 pt-16 sm:pt-24 pb-16 sm:pb-20 text-center">
